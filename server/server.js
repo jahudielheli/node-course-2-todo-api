@@ -7,6 +7,7 @@ var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
 
 var app = express();
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -33,7 +34,7 @@ app.get('/todos', (req, res) => {
 // GET /todos/1254234
 app.get('/todos/:id', (req, res) => {
   var id = req.params.id;
-  
+
   if (!ObjectID.isValid(id)) {
     return res.status(404).send();
   }
@@ -49,8 +50,8 @@ app.get('/todos/:id', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Iniciando en puerto 3000');
+app.listen(port, () => {
+  console.log(`Iniciando en el puerto ${port}`);
 });
 
 module.exports = {app};
